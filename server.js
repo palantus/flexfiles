@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser')
 var API = require('./server/api.js')
+let api = new API();
 
 var router = function(req, res){
   var data = req.body;
@@ -15,22 +16,26 @@ var router = function(req, res){
 
   var parts = command.split("/");
 
-  var respond = function(result, contentType){
+  var respond = function(result, contentType, isBinary){
     if(result !== null && result !== undefined){
       if(contentType === undefined)
         res.writeHead(200, {'Content-Type':'application/json'});
       else
         res.writeHead(200, {'Content-Type': contentType});
-      res.end(typeof result == "string" ? result : JSON.stringify(result));
+
+      if(typeof result == "string")
+        res.end(result);
+      else if(typeof result == "object" && isBinary)
+        res.end(result, 'binary')
+      else
+        res.end(JSON.stringify(result));
     } else {
       res.writeHead(200, {'Content-Type':'application/json'});
       res.end(JSON.stringify({error: "Unknown request type: " + command, data: data, baseUrl: req.baseUrl}));
     }
   }
 
-  let api = new API();
-  api.respond = respond;
-  api.handleCall(parts, data)
+  api.handleCall(parts, data, respond)
 }
 
 var express = require('express')

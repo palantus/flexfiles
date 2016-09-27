@@ -3,25 +3,24 @@
 class Manage{
   constructor(){
     this.respond = function(){console.log("ERROR: API.respond not set before use!" )}
+		let Database = require("../database.js");
+		this.db = new Database().getConnection();
   }
 
-  handle(urlParts, data){
+  handle(urlParts, data, respond){
     if(urlParts.length < 1){
-      this.respond({error: "Unknown command"})
+      respond({error: "Unknown command"})
       return;
     }
 
-    var subArea = urlParts[0]
-    
-    this.respond({"ismanage": true})
-  }
+    let self = this;
+    let command = urlParts[0]
 
-  refreshFilesInSource(){
+    switch(command){
+      case "genthumbnails":
 
-  }
-
-  updateFilesMetadata(){
-
+        break;
+    }
   }
 
 }

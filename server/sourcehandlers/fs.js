@@ -99,6 +99,15 @@ class FSHandler extends SourceRoot{
 		});
 		return filelist;
 	}
+
+	getFileContent(file, cb){
+		var fs = fs || require('fs')
+		var filepath = path.join(this.config, file.path, file.filename);
+		fs.readFile(filepath, (err, data) => {
+		  if (err) throw err;
+		  cb(data);
+		});
+	}
 }
 
 module.exports = FSHandler;

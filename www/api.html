@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>API</title>
+  <style>
+    html, body{background-color: #F8F8F2;height: 100%; margin: 0px;}
+    a{color: blue; font-size: 120%}
+    #header{padding-left: 20px;}
+    #header a{font-size: 100%}
+    #content{flex-flow: row; display: flex; margin-left: 50px; height: 500px}
+    #left{flex: 1 0 50%;}
+    #right{flex: 1 0 50%;}
+    #apitester{width: 100%; height: 100%; border: 0px solid gray;}
+    p{margin-top: 5px; margin-bottom: 5px;}
+    h3{margin-top: 25px; margin-bottom: 5px; text-decoration: underline;}
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1><a href="/" style="color: black; text-decoration: none;">FlexFiles API</a></h1>
+  </div>
+  <hr/>
+  <div id="content">
+    <div id="left">
+    <h3>Source</h3>
+    <p>Synchronize source 1: <a target="apitester" href="/api/source/1/sync">/api/source/1/sync</a></p>
+    <p>List all files in source 1: <a target="apitester" href="/api/source/1/all">/api/source/1/all</a></p>
+    <p>Fill missing metadata of all files in source 1: <a target="apitester" href="/api/source/1/fillmetadata">/api/source/1/fillmetadata</a></p>
+
+    <h3>Search</h3>
+    <p>All files: <a target="apitester" href="/api/search/all">/api/search/all</a></p>
+    <p>All files (including metadata): <a target="apitester" href="/api/search/allfull">/api/search/allfull</a></p>
+
+    <h3>File</h3>
+    <p>File metadata: <a target="apitester" href="/api/file/01923d2994b05b66b6271175458aaf54">/api/file/01923d2994b05b66b6271175458aaf54</a></p>
+    <p>View file: <a target="apitester" href="/api/file/01923d2994b05b66b6271175458aaf54/view">/api/file/01923d2994b05b66b6271175458aaf54/view</a></p>
+    <p>Download file: <a target="apitester" href="/api/file/01923d2994b05b66b6271175458aaf54/download">/api/file/01923d2994b05b66b6271175458aaf54/download</a></p>
+    <p>Get thumbnail: <a target="apitester" href="/api/file/01923d2994b05b66b6271175458aaf54/thumb">/api/file/01923d2994b05b66b6271175458aaf54/thumb</a></p>
+
+    </div>
+    <div id="right">
+      <h3>Result:</h3>
+      <iframe name="apitester" id="apitester"></iframe>
+    </div>
+  </div>
+</body>
+</html>

@@ -16,17 +16,16 @@ class API{
     }
   }
 
-  handleCall(urlParts, data){
+  handleCall(urlParts, data, respond){
     var area = urlParts[0]
     var subArea = urlParts.slice(1)
     var apiObj = null;
 
     if(this.apis[area] !== undefined){
       //console.log("API: " + area)
-      this.apis[area].respond = this.respond
-      this.apis[area].handle(subArea, data)
+      this.apis[area].handle(subArea, data, respond)
     } else {
-      this.respond()
+      respond()
     }
   }
 }

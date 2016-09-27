@@ -5,18 +5,23 @@ var FS = require('./fs.js')
 class MasterSourceHandler{
 	static construct(sourceInfo){
 		var source = {}
-		switch(sourceInfo.type){
+		let sourceType = sourceInfo.sourcetype || sourceInfo.type;
+		let sourceId = sourceInfo.sourceid || sourceInfo.id;
+		let sourceName = sourceInfo.sourcename || sourceInfo.name;
+		let sourceConfig = sourceInfo.sourceconfig || sourceInfo.config;
+
+		switch(sourceType){
 			case "fs":
-				source = new FS(sourceInfo.id);
+				source = new FS(sourceId);
 				break;
 			default:
-				console.log("ERROR: Unknown source type: " + rows[0].type);
+				console.log("ERROR: Unknown source type: " + sourceType);
 				return;
 		}
 
-		source.config = sourceInfo.config;
-		source.name = sourceInfo.name;
-		source.type = sourceInfo.type;
+		source.config = sourceConfig;
+		source.name = sourceName;
+		source.type = sourceType;
 
 		return source;
 	}

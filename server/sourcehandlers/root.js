@@ -27,6 +27,10 @@ class SourceRoot{
 	fillMissingMetadata(file){
 		throw "Source does not override fillMissingMetadata";
 	}
+
+	getFileContent(file){
+		throw "Source does not override getFileContent";
+	}
 }
 
 module.exports = SourceRoot;

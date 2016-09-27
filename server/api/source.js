@@ -11,9 +11,9 @@ class SourceHandler{
 		this.db = new Database().getConnection();
   }
 
-  handle(urlParts, data){
+  handle(urlParts, data, respond){
     if(urlParts.length < 2){
-      this.respond({error: "Unknown command"})
+      respond({error: "Unknown command"})
       return;
     }
     let self = this;
@@ -24,7 +24,7 @@ class SourceHandler{
       switch(command){
         case "all":
           self.db.query('SELECT * FROM sourcefiles WHERE sourceid = ?', [sourceId], function(err, rows){
-            self.respond(rows)
+            respond(rows)
           })
           break;
 
@@ -43,7 +43,7 @@ class SourceHandler{
         						[file.hash, file.size, file.extension, file.filename, file.type, file.hash]);
         		})
 
-            self.respond({success: true, message: "Synchronization finished"})
+            respond({success: true, message: "Synchronization finished"})
           })
           break;
 
@@ -65,7 +65,7 @@ class SourceHandler{
                 self.db.query('UPDATE files SET metadataupdated = 1 WHERE hash = ?', [file.hash]);
               })
             })
-            self.respond({success: true, message: "Metadata filled"})
+            respond({success: true, message: "Metadata filled"})
           })
           break;
         case "rereadmetadata":
@@ -73,7 +73,7 @@ class SourceHandler{
           break;
 
         default:
-          self.respond({error: "Unknown command for source"})
+          respond({error: "Unknown command for source"})
       }
     })
   }

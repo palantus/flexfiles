@@ -7,24 +7,24 @@ class SearchHandler{
 		this.db = new Database().getConnection();
   }
 
-  handle(urlParts, data){
+  handle(urlParts, data, respond){
     var self = this;
     var command = urlParts[0]
     switch(command){
       case "all" :
         self.db.query('SELECT hash, title, type FROM files', function(err, rows){
           if(err) console.log(err)
-          self.respond(rows)
+          respond(rows)
         })
         break;
       case "allfull" :
         self.db.query('SELECT * FROM files LEFT JOIN files_images on files.hash = files_images.hash', function(err, rows){
           if(err) console.log(err)
-          self.respond(rows)
+          respond(rows)
         })
         break;
       default:
-        self.respond({error: "Unknown command for search"})
+        respond({error: "Unknown command for search"})
     }
   }
 }
