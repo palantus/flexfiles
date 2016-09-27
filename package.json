@@ -1,0 +1,13 @@
+{
+	"name": "FlexFiles",
+	"version": "1.0.0",
+	"dependencies" : {
+		"body-parser" : "*",
+		"express" : "*",
+		"image-size" : "*",
+		"md5-file" : "*",
+		"mysql" : "*",
+		"phash-image" : "*",
+		"hamming-distance" : "*"
+	}
+}
