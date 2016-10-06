@@ -1,6 +1,6 @@
 "use strict"
 
-var ManageAPI = require('./api/manage_test.js')
+var ManageAPI = require('./api/manage.js')
 var SearchAPI = require('./api/search.js')
 var SourceAPI = require('./api/source.js')
 var FileAPI = require('./api/file.js')
