@@ -5,7 +5,7 @@
   <style>
     html, body{background-color: #F8F8F2;height: 100%; margin: 0px;}
     #searchbar{width: 300px}
-    img{height: 100px;}
+    img{height: 150px;}
   </style>
 </head>
 <body>
@@ -24,7 +24,7 @@ $("#runsearch").click(function(){
   $.get("/api/search/all", function(res){
     res.forEach(function(image){
       var img = $("<img/>");
-      img.attr("src", "/api/file/" + image.hash + "/view")
+      img.attr("src", "/api/file/" + image.hash + "/thumb")
       $("#results").append(img);
     })
   })

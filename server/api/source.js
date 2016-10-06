@@ -2,14 +2,9 @@
 
 var SourceMaster = require('../sourcehandlers/master.js')
 var constants = require('../constants.json')
+var APIRoot = require('./apiroot.js')
 
-class SourceHandler{
-  constructor(){
-    this.respond = function(){console.log("ERROR: API.respond not set before use!" )}
-
-		let Database = require("../database.js");
-		this.db = new Database().getConnection();
-  }
+class SourceHandler extends APIRoot{
 
   handle(urlParts, data, respond){
     if(urlParts.length < 2){

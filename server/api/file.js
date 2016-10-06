@@ -36,7 +36,15 @@ class FileHandler extends APIRoot{
         break;
 
       case "thumb":
-        respond({error: "Not implemented"})
+        let path = require("path")
+        let fs = require("fs")
+        let rootAppDir = path.dirname(require.main.filename);
+        let thumbDir = path.join(rootAppDir, "thumbnails")
+
+        fs.readFile(path.join(thumbDir, file.hash + ".png"), (err, data) => {
+    		  if (err) throw err;
+    		  respond(data, "image/png", true)
+    		});
         break;
 
       case "download":
@@ -47,21 +55,6 @@ class FileHandler extends APIRoot{
       default:
         respond({error: "Unknown command for file"})
     }
-  }
-
-  getFileSource(hash, cb){
-    var self = this
-
-    this.db.query('SELECT * from sources join sourcefiles on sources.id = sourcefiles.sourceid where sourcefiles.hash = ?', hash, function(err, rows, fields) {
-			if (err) throw err;
-
-			if(rows.length > 0){
-				var source = SourceMaster.construct(rows[0])
-        cb(source, rows[0])
-			} else {
-				console.log("ERROR: No source for file: " + hash);
-			}
-		});
   }
 }
 

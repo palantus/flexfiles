@@ -1,11 +1,7 @@
 "use strict"
+var APIRoot = require('./apiroot.js')
 
-class SearchHandler{
-  constructor(){
-    this.respond = function(){console.log("ERROR: API.respond not set before use!" )}
-		let Database = require("../database.js");
-		this.db = new Database().getConnection();
-  }
+class SearchHandler extends APIRoot{
 
   handle(urlParts, data, respond){
     var self = this;

@@ -8,6 +8,7 @@
 		"md5-file" : "*",
 		"mysql" : "*",
 		"phash-image" : "*",
-		"hamming-distance" : "*"
+		"hamming-distance" : "*",
+		"jimp" : "*"
 	}
 }
